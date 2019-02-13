@@ -78,13 +78,13 @@ int main(){
 	file.close();
 
 	// vetor de saida com numero de linhas do arquivo
-	int output[linhas];
+	int saida[linhas];
 
 	// menu switch case
 	switch (option){
 		case 1:
-			counting_sort(array, output, size, linhas)
-			print_values(output, linhas);
+			counting_sort(array, saida, size, linhas);
+			print_values(saida, linhas);
 			break;
 		case 2:
 			//merge_sort(array, linhas);
