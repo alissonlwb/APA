@@ -8,7 +8,7 @@
 
 using namespace std;
 
-// funcoes pro counting sort
+// funcoes pro counting sort (counting_sort)
 
 void counting_sort(int number[], int output[], int size, int k){
 
@@ -87,7 +87,7 @@ int main(){
 			print_values(saida, linhas);
 			break;
 		case 2:
-			//merge_sort(array, linhas);
+			//radix_sort(array, linhas);
 			//print_values(array, linhas);
 			break;
 		default:
