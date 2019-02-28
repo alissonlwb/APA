@@ -61,7 +61,7 @@ void heapsort(int input[], int n)
 void print_values(int input[], int size){
 
 	for (int i = 0; i < size; ++i){
-        cout << "Pos(" << i+1 << ") ; Num(" << number[i] << ")" << endl;
+        cout << "Pos(" << i+1 << ") ; Num(" << input[i] << ")" << endl;
     }
 
 }
