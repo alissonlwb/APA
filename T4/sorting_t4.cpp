@@ -8,6 +8,9 @@
 
 using namespace std;
 
+// funcao heap() converte os valores de input[] em um heap
+// de forma recursiva cria um heap maximo (P >= C) comecando de "i" (raiz)
+
 // cria subarvore com tamanho "n" e raíz em "i" 
 void heap(int input[], int n, int i)
 {
@@ -27,7 +30,7 @@ void heap(int input[], int n, int i)
 	// por fim, testa se o maior nao é raiz
 	if (maior != i)
 	{
-		// troca os valores de input[i] e input[maior]		
+		// se for troca os valores de input[i] e input[maior]		
 		aux = input[i];
 		input[i] = input[maior];
 		input[maior] = aux;
@@ -36,23 +39,27 @@ void heap(int input[], int n, int i)
 	}
 }
 
-// funcao pro heapsort
+// heapsort() ordena a entrada (input[]) 
 void heapsort(int input[], int n)
 {
 	int aux = 0;// utilizado pra troca
 
-	// ordena o heap
+	// constroi o heap comecando pelo nós pais chamando 
+	// o construtor heap() pra cada um deles, convertendo 
+    // a entrada num heap maximo
 	for (int i = n / 2-1; i >= 0; i--)
 		heap(input, n, i);
 
-	// retira os elementos do heap um por vez
+	// retira os elementos do heap um por vez e se obtem um vetor ordenado
 	for (int i=n-1; i>=0; i--)
 	{
-		// troca o nó "i" atual pelo final "0"
+		// move a raiz atual "i" pro final "0"
+		// pega cada no raiz e coloca no fim do vetor
 		aux = input[0];
 		input[0] = input[i];
 		input[i] = aux;
-		// faz recursao do heap com tamanho "i" e raíz "0"
+		// faz recursao do heap reduzido com tamanho "i" e raíz "0"
+		// chama heap pra ter certeza que o resto dos elementos formam um heap maximo
 		heap(input, i, 0);
 	}
 }
