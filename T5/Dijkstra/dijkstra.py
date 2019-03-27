@@ -15,8 +15,10 @@ class Grafo():
         distancias = [sys.maxsize] * self.no  # array de distâncias do nó x para o nó origem
         distancias[origem] = 0                # da origem para origem a distância é zero
         visitado = [False] * self.no          # cria um array de nós visitados que auxilia na criação dos caminhos
+        cont = 0
 
         for i in range(self.no):                        # varre todos os nós do grafo
+            cont += 1
             u = self.minDistancia(distancias, visitado) # retorna a distância mínima dos nós ainda não visitados
             visitado[u] = True                          # e marca o nó com a distância mínima encontrada como visitado
 
@@ -26,7 +28,7 @@ class Grafo():
                 if self.grafo[u][v] > 0 and visitado[v] == False and distancias[v] > distancias[u] + self.grafo[u][v]:
                     distancias[v] = distancias[u] + self.grafo[u][v]
 
-        self.printResultado(distancias[9])
+        self.printResultado(distancias[int(cont-1)])
 
     def printResultado(self, distancia):
         print("Resultado: " + str(distancia))
