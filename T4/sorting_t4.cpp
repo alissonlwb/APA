@@ -50,7 +50,7 @@ void heapsort(int input[], int n)
 	for (int i = n / 2-1; i >= 0; i--)
 		heap(input, n, i);
 
-	// retira os elementos do heap um por vez e se obtem um vetor ordenado
+	// retira os elementos do heap um por vez e por fim se obtem um vetor ordenado
 	for (int i=n-1; i>=0; i--)
 	{
 		// move a raiz atual "i" pro final "0"
