@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// recebe numero de produtos, capacidade da mochila, pesos e 
+// recebe numero de produtos, capacidade da mochila, pesos e valores
 int MochilaInteira(int n, int M, int pesos[], int valores[])
 {	
 	// array de inteiros pra representar a tabela 
@@ -29,23 +29,14 @@ int MochilaInteira(int n, int M, int pesos[], int valores[])
 		// loop pra coluna
 		for(int w = 1; w <= M; w++)
 		{
-			// se peso do elemento i <= w, ele pode fazer parte da solução
+			// se peso do elemento i - 1 <= valor de w, ele pode fazer parte da solução
 			if(pesos[i - 1] <= w)
 			{   
-				// maximiza 
-				if((valores[i - 1] + V[i - 1][w - pesos[i - 1]]) > V[i - 1][w])
-				{
-					V[i][w] = valores[i - 1] + V[i - 1][w - pesos[i - 1]];
-				}
-
-				// se nao, pega valor da linha superior, coluna w
-				else
-				{
-					V[i][w] = V[i - 1][w];
-				}
+				// elemento da tabela recebe valor maximo
+				V[i][w] = max(valores[i - 1] + V[i - 1][w - pesos[i - 1]], V[i - 1][w]);
 			}
 			 
-			// se peso do elemento i > w, pega valor da linha superior, coluna w
+			// se peso do elemento i - 1 > w, pega valor da linha superior, coluna w
 			else
 			{
 				V[i][w] = V[i - 1][w]; 
