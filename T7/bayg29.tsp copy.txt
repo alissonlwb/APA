@@ -1,0 +1,152 @@
+NAME: bayg29
+TYPE: TSP
+COMMENT: 29 Cities in Bavaria, geographical distances (Groetschel,Juenger,Reinelt)
+DIMENSION: 29
+EDGE_WEIGHT_TYPE: EXPLICIT
+EDGE_WEIGHT_FORMAT: UPPER_ROW 
+DISPLAY_DATA_TYPE: TWOD_DISPLAY
+EDGE_WEIGHT_SECTION
+ 97 205 139  86  60 220  65 111 115 227  95  82 225 168 103 266 205 149 120  58 257 152  52 180 136  82  34 145
+129 103  71 105 258 154 112  65 204 150  87 176 137 142 204 148 148  49  41 211 226 116 197  89 153 124  74
+219 125 175 386 269 134 184 313 201 215 267 248 271 274 236 272 160 151 300 350 239 322  78 276 220  60
+167 182 180 162 208  39 102 227  60  86  34  96 129  69  58  60 120 119 192 114 110 192 136 173 173
+ 51 296 150  42 131 268  88 131 245 201 175 275 218 202 119  50 281 238 131 244  51 166  95  69
+279 114  56 150 278  46 133 266 214 162 302 242 203 146  67 300 205 111 238  98 139  52 120
+178 328 206 147 308 172 203 165 121 251 216 122 231 249 209 111 169  72 338 144 237 331
+169 151 227 133 104 242 182  84 290 230 146 165 121 270  91  48 158 200  39  64 210
+172 309  68 169 286 242 208 315 259 240 160  90 322 260 160 281  57 192 107  90
+140 195  51 117  72 104 153  93  88  25  85 152 200 104 139 154 134 149 135
+320 146  64  68 143 106  88  81 159 219  63 216 187  88 293 191 258 272
+174 311 258 196 347 288 243 192 113 345 222 144 274 124 165  71 153
+144  86  57 189 128  71  71  82 176 150  56 114 168  83 115 160
+ 61 165  51  32 105 127 201  36 254 196 136 260 212 258 234
+106 110  56  49  91 153  91 197 136  94 225 151 201 205
+215 159  64 126 128 190  98  53  78 218  48 127 214
+ 61 155 157 235  47 305 243 186 282 261 300 252
+105 100 176  66 253 183 146 231 203 239 204
+113 152 127 150 106  52 235 112 179 221
+ 79 163 220 119 164 135 152 153 114
+236 201  90 195  90 127  84  91
+273 226 148 296 238 291 269
+112 130 286  74 155 291
+130 178  38  75 180
+281 120 205 270
+213 145  36
+ 94 217
+162
+
+DISPLAY_DATA_SECTION
+
+// PASSO 1
+// a partir daqui ler
+// montar a matriz de adjacencia (simétrica)
+// com distancia euclidiana, de i pra todos os outros (pra cada par)
+// * usar função round() pra arredondar distancias
+// conta com hipotenusa pra achar os valores
+
+// PASSO 2
+// caxeiro viajante
+// visitar todo mundo com menor distancia na soma das arestas
+//
+// solução = sequencia de vertices visitados
+// representação da solução: vetor "v" de inteiros, 
+// onde v[i] representa o indice do vertice que se encontra na posição "i" da rota
+//
+//   pos[0][1][2][3][4][5]
+//   v  [1][3][2][4][6][5]
+//
+
+// função de avaliação
+	int f(solução, matriz_adj, n)
+	n = solucao.lenght()
+	soma = 0;
+	for(int i = 0; i < solucao.lenght() - 1; i++)
+	{
+		v1 = solucao[i]
+		v2 = solucao[i+1]
+		soma += matriz_adj[v1][v2]
+	}
+	// soma do primeiro com o ultimo 
+	soma += matriz_adj[solucao[0]][solucao[n]]
+
+// heuristica de construcao 1
+// (vizinho mais proximo)
+	escutar gravação 22 minutos
+	
+// heuristica de construcao 2
+// (melhor inserção - procura vertice mais afastado da origem e começa a rota com ele)
+ 	escutar gravacao 24 minutos
+
+
+// movimentos de vizinhança (procedimento de refinamento) IMPLEMENTAR OS 3
+// 1. (2-opt): gravacao 38 minutos
+	1 , 2 3 5 , 4 (troca o miolo)
+	1 , 5 3 2 , 4
+
+	1 2 , 3 5 , 4 (troca o miolo)
+	1 2 , 5 3 , 4
+
+	... passa por todas as trocas e fica com a melhor ...
+
+	dica: as unicas arestas que importam é
+	      decrementar as que somem e somar as que aparecem
+
+// 2. (Reinsertion): gravacao 44:30 minutos
+	pega um vertice e desloca ele 
+	 .
+	12354
+	  .
+	13254
+     	   .
+	13524
+	    .
+	13542
+	
+	no maximo 3 arestas pra desfazer e 3 pra refazer
+	nao precisa construir a solução, faz so as contas
+
+// 3. (Swap): pega 2 vertices quaisquer e troca
+	 . .
+	12354
+	 . .
+	15324
+
+	dica: fazer as contas das arestas que se desfaz e das arestas que refaz
+	      depois de fazer essas contas que monta dnv
+
+// considerações final: 50 e poucos minutos da gravação 
+
+// dos fazer o VND!
+
+
+(Indice) (x)	(y)
+   1    1150.0  1760.0
+   2     630.0  1660.0
+   3      40.0  2090.0
+   4     750.0  1100.0
+   5     750.0  2030.0
+   6    1030.0  2070.0
+   7    1650.0   650.0
+   8    1490.0  1630.0
+   9     790.0  2260.0
+  10     710.0  1310.0
+  11     840.0   550.0
+  12    1170.0  2300.0
+  13     970.0  1340.0
+  14     510.0   700.0
+  15     750.0   900.0
+  16    1280.0  1200.0
+  17     230.0   590.0
+  18     460.0   860.0
+  19    1040.0   950.0
+  20     590.0  1390.0
+  21     830.0  1770.0
+  22     490.0   500.0
+  23    1840.0  1240.0
+  24    1260.0  1500.0
+  25    1280.0   790.0
+  26     490.0  2130.0
+  27    1460.0  1420.0
+  28    1260.0  1910.0
+  29     360.0  1980.0
+EOF
