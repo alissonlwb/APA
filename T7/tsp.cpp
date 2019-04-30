@@ -71,11 +71,13 @@ void nearest_neighbour(int *adj_matrix)
 
 		// acumula valores de custo
 		cost += min;
-		
+
 		// marca coluna j como visitada
 		visited_node[past_visited] = true;
+
 		// no atual vai ser o anterior
 		curr_node = past_visited;
+
 		// coloca o anterior na lista do caminho
 		path.push_back(past_visited);
 	}
@@ -84,12 +86,123 @@ void nearest_neighbour(int *adj_matrix)
 	cout<<"Custo minimio total: "<<cost<<"\n";
 
 	cout<<"Caminho: ";
-	//imprime o caminho
+	// imprime o caminho
 	for (int i = 0; i < path.size(); ++i)
 	{
 		cout<<path[i]<<", ";
 	}
+	// imprime o nó inicial novamente
+	cout<<"0";
+}
 
+int calcutale_cost()
+{
+	int cost = 0;
+
+	
+}
+
+
+
+// 2optSwap(route, i, k) {
+//      1. take route[1] to route[i-1] and add them in order to new_route
+//      2. take route[i] to route[k] and add them in reverse order to new_route
+//      3. take route[k+1] to end and add them in order to new_route
+//      return new_route;
+//  }
+
+// Here is an example of the above with arbitrary input:
+
+// example route: A ==> B ==> C ==> D ==> E ==> F ==> G ==> H ==> A  
+//    example i = 4, example k = 7  
+//    new_route:  
+//        1. (A ==> B ==> C)  
+//        2. A ==> B ==> C ==> (G ==> F ==> E ==> D)  
+//        3. A ==> B ==> C ==> G ==> F ==> E ==> D (==> H ==> A)
+
+// recebe o vetor com o caminho antigo e dois indices pra delimitar o "miolo" a ser trocado
+vector<int> two_opt_swap(vector<int> old_path, int i, int k)
+{
+	// inicializa vetor new_path tamanho 1500 e zera tudo 
+	vector<int> new_path(1500, 0);
+
+	// pega old_path[1] até old_path[i-1] e os adicione em ordem ao vetor new_path
+	for (int j = 1; j <= j-1; ++i)
+	{
+		new_path.push_back(old_path[j]);
+	}
+
+	// pega old_path[i] até old_path[k] e os adicione em na ordem reversa ao vetor new_path
+	for (int x = i; x < k; --x)
+	{
+		new_path.push_back(old_path[x]);
+	}
+
+	// pega old_path[k+1] até old_path[1500] e os adicione em ordem no vetor new_path
+	for (int y = k+1; y < 1500; ++y)
+	{
+		new_path.push_back(old_path[x]);
+	}
+
+	// retorna vetor com caminho novo 
+	return new_path;
+	
+}
+
+// This is the complete 2-opt swap making use of the above mechanism:
+
+//    repeat until no improvement is made {
+//        start_again:
+//        best_distance = calculateTotalDistance(existing_route)
+//        for (i = 0; i < number of nodes eligible to be swapped - 1; i++) {
+//            for (k = i + 1; k < number of nodes eligible to be swapped; k++) {
+//                new_route = 2optSwap(existing_route, i, k)
+//                new_distance = calculateTotalDistance(new_route)
+//                if (new_distance < best_distance) {
+//                    existing_route = new_route
+//                    goto start_again
+//                }
+//            }
+//        }
+//    }
+
+void two_opt(vector<int> old_path, int curr_cost)
+{
+	int best_cost = curr_cost;
+	int new_cost = 0;
+	vector<int> new_path(1500, 0);
+	bool improved = true;
+
+	while(improved)
+	{
+		calcutale_cost(old_path);
+		improved = false;
+		for (int i = 0; i < 1500; ++i)
+		{
+			for (int k = i + 1; k < 1500; ++k)
+			{
+				new_path = two_opt_swap(old_path, i, k);
+				new_cost = calcutale_cost(new_path);
+
+				if(new_cost < best_cost)
+				{
+					old_path = new_path;
+					improved = true;
+				}
+			}
+		}
+	}
+
+	// imprime o custo total
+	cout<<"Custo minimio total: "<<best_cost<<"\n";
+
+	cout<<"Caminho: ";
+	// imprime o caminho
+	for (int i = 0; i < path.size(); ++i)
+	{
+		cout<<new_path[i]<<", ";
+	}
+	// imprime o nó inicial novamente
 	cout<<"0";
 }
 
