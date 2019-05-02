@@ -198,7 +198,7 @@ vector<int> swap(int **adj_matrix, vector<int> route)
 }
 
 // movimento de vizinhanca 2-opt
-vector<int> two_opt(int **adj_matrix, vector <int> route)
+vector <int> two_opt(int **adj_matrix, vector <int> route)
 {
 	vector <int> temp = route;
 	vector <int> init = route;
@@ -253,12 +253,11 @@ vector<int> vnd(int **adj_matrix, vector <int> route)
 	int cost; // custo
 	int curr_cost; // custo atual
 	
-	vector <int> best_route = route; // melhor rota será a rota autal, por enquanto
+	vector<int> best_route = route; // melhor rota será a rota autal, por enquanto
 
 	while(k <= r)
 	{
 		// entcontre o melhor vizinho pra k = 1 ou k = 2
-
 		// k = 1 (swap)
 		if(k == 1)
 		{
@@ -287,7 +286,12 @@ vector<int> vnd(int **adj_matrix, vector <int> route)
 
 		// se custo calculado do melhor vizinho for MAIOR que o da rota original
 		// troca pra k = 2 e tenta com o 2-opt
-		else k++;
+		else
+		{ 
+			k++;
+		}
+
+		cout<<"valor de k: "<<k<<"\n";
 	}
 
 	cout<<"VND:\n";
