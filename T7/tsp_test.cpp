@@ -291,10 +291,22 @@ vector<int> vnd(int **adj_matrix, vector <int> route)
 			k++;
 		}
 
+		cout<<"VND:\n";
 		cout<<"valor de k: "<<k<<"\n";
+		cout<<"Custo minimio: "<<curr_cost<<"\n";
+		cout<<"Custo atual: "<<cost<<"\n\n";
+
+		cout<<"Caminho: ";
+		// imprime o caminho
+		for (int i = 0; i < route.size(); ++i)
+		{
+			cout<<route[i]<<", ";
+		}
+		// imprime o nó inicial novamente
+		cout<<"0\n\n";
 	}
 
-	cout<<"VND:\n";
+	cout<<"VND FINAL:\n";
 	// imprime o custo total
 	cout<<"Custo minimio total: "<<curr_cost<<"\n";
 
@@ -327,7 +339,7 @@ int main(int argc, char *argv[])
 			adj_matrix[i][j] = 0;
 
 	// abre o arquivo com os pontos x e y
-	ifstream in("tsp3.txt");
+	ifstream in("tsp1.txt");
 	
 	// pega os 1500 valores
 	while(count!=1500)
